@@ -1,0 +1,4 @@
+intentkit/
+.env
+*.db
+__pycache__/
