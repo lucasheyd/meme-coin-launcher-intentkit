@@ -1,9 +1,9 @@
-# 🚀 Meme Coin Launch Assistant - IntentKit
+# 🚀 Meme Coin Launch Assistant
 
 
-> **Transform any idea into a viral meme coin in 60 seconds using AI + Blockchain**
+> **Transform any idea into a viral meme coin concept in seconds using AI + Blockchain**
 
-An autonomous AI agent built with IntentKit that generates creative meme coin concepts and can deploy them on Base network via Coinbase Developer Platform.
+An autonomous AI agent built with IntentKit that generates creative meme coin concepts and can deploy them on Base network via Coinbase Developer Platform integration.
 
 ## 🎯 **What It Does**
 
@@ -24,7 +24,7 @@ with maximum cuteness. Hold tight and let the pandas do the rest! 🐼💤"
 
 ## 🎬 **Live Demo Results**
 
-Our agent just created **3 unique meme coins in a single request**:
+The agent created **3 unique meme coins in a single request**:
 
 ### 🐼 Lazy Pandas (PANDA)
 - **Concept**: Relaxation and good vibes crypto
@@ -54,7 +54,7 @@ Our agent just created **3 unique meme coins in a single request**:
 ### 🔗 Blockchain Integration
 - **CDP Skills**: Ready for real token deployment
 - **Base Network**: Optimized for low-cost launches
-- **Auto Wallet**: Creates CDP wallet automatically (`0xDc70Ad35462070a2305d6c62C9E98E3bc75F4199`)
+- **Auto Wallet**: Creates CDP wallet automatically
 - **Zora WOW**: Integration with `wow_create_token` for launches
 
 ### 🤖 Autonomous Operation  
@@ -79,14 +79,19 @@ Our agent just created **3 unique meme coins in a single request**:
 - OpenAI API key
 - Coinbase Developer Platform keys (for real deployments)
 
-### Installation
+### One-Command Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/meme-coin-launcher
-cd meme-coin-launcher
+# Clone and setup everything
+git clone https://github.com/yourusername/meme-coin-launcher-intentkit.git
+cd meme-coin-launcher-intentkit
+./setup.sh
+```
 
-# Install IntentKit
+### Manual Installation
+
+```bash
+# Clone IntentKit
 git clone https://github.com/crestalnetwork/intentkit.git
 cd intentkit
 
@@ -95,13 +100,13 @@ pip install uv
 uv sync
 
 # Setup environment
-cp example.env .env
+cp ../example.env .env
 # Edit .env with your API keys
 ```
 
 ### Configuration
 
-Edit `.env` file:
+Edit `intentkit/.env` file:
 
 ```env
 # Required
@@ -119,35 +124,18 @@ DATABASE_URL=sqlite:///./intentkit.db
 ### Run the Agent
 
 ```bash
-# Start the IntentKit server
+# Start IntentKit server
+cd intentkit
 uv run uvicorn app.api:app --host 0.0.0.0 --port 8000
 
-# Create the meme launcher agent
-curl -X POST http://127.0.0.1:8000/agents \
-  -H "Content-Type: application/json" \
-  -d '{
-    "id": "meme-launcher",
-    "name": "Meme Coin Launch Assistant", 
-    "model": "gpt-4.1-mini",
-    "prompt": "You are a meme coin launch assistant. When users mention you with coin ideas, you extract the concept, generate creative token details (name, symbol, description), and help them launch tokens. Always be fun and engaging with emojis!",
-    "purpose": "Launch creative meme coins",
-    "personality": "Fun, engaging, creative, uses emojis",
-    "principles": "Help users create amazing meme coins with personality"
-  }'
-
-# Test the agent
-curl -X POST http://127.0.0.1:8000/agents/meme-launcher/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "chat_id": "test-123",
-    "user_id": "user-456", 
-    "message": "Create a meme coin about dancing robots!"
-  }'
+# In another terminal, run the demo
+cd ..
+./demo.sh
 ```
 
 ## 🎯 **Usage Examples**
 
-### Single Concept
+### Single Concept Generation
 ```bash
 curl -X POST http://127.0.0.1:8000/agents/meme-launcher/chat \
   -H "Content-Type: application/json" \
@@ -169,9 +157,9 @@ curl -X POST http://127.0.0.1:8000/agents/meme-launcher/chat \
   }'
 ```
 
-### With CDP Skills (Real Deployment)
+### Real Token Deployment
 ```bash
-# First enable CDP skills
+# Enable CDP skills (requires API keys)
 curl -X PATCH http://127.0.0.1:8000/agents/meme-launcher \
   -H "Content-Type: application/json" \
   -d '{
@@ -183,7 +171,7 @@ curl -X PATCH http://127.0.0.1:8000/agents/meme-launcher \
     }
   }'
 
-# Then request actual token launch
+# Launch actual token
 curl -X POST http://127.0.0.1:8000/agents/meme-launcher/chat \
   -H "Content-Type: application/json" \
   -d '{
@@ -204,9 +192,17 @@ curl -X POST http://127.0.0.1:8000/agents/meme-launcher/chat \
 | **Network** | Base Mainnet |
 | **Model** | GPT-4.1-mini |
 
+## 🏗️ **Architecture Overview**
+
+```
+User Input → IntentKit Agent → AI Processing → Token Concept Generation
+                                     ↓
+CDP Integration ← Base Network ← Zora WOW ← Blockchain Deployment
+```
+
 ## 🔧 **Current Status**
 
-### ✅ Completed
+### ✅ Production Ready
 - [x] Agent creation and configuration
 - [x] AI concept generation (100% working)
 - [x] CDP skills integration configured
@@ -215,41 +211,126 @@ curl -X POST http://127.0.0.1:8000/agents/meme-launcher/chat \
 - [x] Error handling and validation
 - [x] Documentation and testing
 
-### 🔄 Production Ready
-- [ ] CDP API keys (user configurable)
-- [ ] Twitter integration (optional)
-- [ ] Autonomous monitoring
-- [ ] Advanced tokenomics
+### 🔄 Coming Soon
+- [ ] Twitter integration for social launch campaigns
+- [ ] Advanced tokenomics templates
+- [ ] Multi-language support
+- [ ] Web interface for non-technical users
 
-### 🚀 Future Enhancements
+### 🚀 Future Roadmap
 - Multi-chain support (Ethereum, Polygon, Arbitrum)
 - NFT collection integration
 - DAO governance templates
 - Analytics dashboard
 - Mobile app integration
 
+## 💡 **Business Applications**
+
+### For Creators
+- **Rapid Prototyping**: Test meme coin concepts quickly
+- **Professional Marketing**: AI-generated copy and branding
+- **Technical Simplicity**: No blockchain knowledge required
+- **Cost Effective**: Base network deployment
+
+### For Developers
+- **Integration Ready**: REST API for custom applications
+- **Scalable Architecture**: Handle multiple simultaneous requests
+- **Open Source**: Customizable and extensible
+- **Modern Stack**: Latest technologies and best practices
+
+### For Businesses
+- **Brand Engagement**: Create branded community tokens
+- **Marketing Campaigns**: Viral meme coin strategies
+- **Community Building**: Automated engagement tools
+- **Revenue Generation**: Transaction fees and premium features
+
+## 🛡️ **Security & Compliance**
+
+- **API Key Security**: Environment-based configuration
+- **Wallet Management**: Secure CDP integration
+- **Rate Limiting**: Built-in protection against abuse
+- **Error Handling**: Graceful failure recovery
+- **Audit Trail**: Complete transaction logging
+
 ## 🤝 **Contributing**
 
-Contributions and feedback are welcome!
+We welcome contributions and feedback!
 
 1. Fork the repository
 2. Create a feature branch
-3. Submit a pull request
-4. Join the discussion on Discord
+3. Make your changes with proper tests
+4. Submit a pull request
+5. Join the discussion on Discord
+
+### Development Setup
+```bash
+# Fork and clone your fork
+git clone https://github.com/yourfork/meme-coin-launcher-intentkit.git
+
+# Create development branch
+git checkout -b feature/your-feature-name
+
+# Make changes and test
+./demo.sh
+
+# Submit pull request
+```
+
+## 📁 **Project Structure**
+
+```
+meme-coin-launcher-intentkit/
+├── README.md                 # Main documentation
+├── INSTALLATION.md          # Detailed setup guide  
+├── SHOWCASE.md              # Demo and presentation guide
+├── setup.sh                 # Automated setup script
+├── demo.sh                  # Quick demonstration
+├── agent-config.json        # Agent configuration
+├── example.env              # Environment template
+├── docker-compose.yml       # Production deployment
+├── .gitignore              # Git ignore rules
+└── intentkit/              # IntentKit framework (auto-cloned)
+```
 
 ## 📄 **License**
 
-MIT License - Feel free to use and modify!
+MIT License - See [LICENSE](LICENSE) file for details.
 
 ## 🙏 **Acknowledgments**
 
-- **Crestal Network** for the amazing IntentKit platform
-- **Coinbase** for CDP integration
-- **Base Network** for low-cost deployment
-- **OpenAI** for GPT-4.1-mini
+- **Crestal Network** for the powerful IntentKit platform
+- **Coinbase** for CDP blockchain integration
+- **Base Network** for efficient and low-cost deployment
+- **OpenAI** for GPT-4.1-mini language model
+- **Zora** for WOW token creation protocol
+
+## 🚀 **Getting Started**
+
+1. **Quick Setup**: Run `./setup.sh` for automated installation
+2. **Configuration**: Edit `intentkit/.env` with your API keys  
+3. **Launch**: Start server and run `./demo.sh` for instant demo
+4. **Explore**: Try your own concepts and see the magic happen
+
+## 🌟 **Why This Matters**
+
+The meme coin market represents billions in value but remains technically inaccessible to most creators. This project bridges that gap by combining:
+
+- **AI Creativity** with blockchain functionality
+- **Professional Marketing** with viral potential  
+- **Technical Simplicity** with production readiness
+- **Individual Expression** with community building
+
+Every interaction demonstrates the future of human-AI-blockchain collaboration.
+
+## 📞 **Support & Community**
+
+- **Documentation**: [IntentKit Docs](https://docs.crestal.network) | [Installation Guide](INSTALLATION.md) | [Showcase Guide](SHOWCASE.md)
+- **Community**: [Discord](https://discord.gg/crestal) | [GitHub Discussions](https://github.com/yourusername/meme-coin-launcher-intentkit/discussions)
+- **Development**: [Issues](https://github.com/yourusername/meme-coin-launcher-intentkit/issues) | [Pull Requests](https://github.com/yourusername/meme-coin-launcher-intentkit/pulls)
+- **Social**: [Twitter](https://twitter.com/crestalnetwork) | [LinkedIn](https://linkedin.com/company/crestal)
 
 ---
 
-**Built with ❤️ using IntentKit - Where AI meets Blockchain! 🚀**
+**Built with ❤️ using IntentKit - Where AI meets Blockchain**
 
-*Ready to turn your wildest meme ideas into real crypto projects? Let's launch! 🎪*
+*Transform your wildest ideas into viral crypto projects in seconds* 🚀
